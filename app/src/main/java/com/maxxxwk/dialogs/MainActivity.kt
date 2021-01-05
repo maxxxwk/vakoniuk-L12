@@ -2,17 +2,27 @@ package com.maxxxwk.dialogs
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.maxxxwk.dialogs.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout> by lazy {
+        BottomSheetBehavior.from(
+            binding.bottomSheet.bottomSheetParentContainer
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupBinding()
+        setupBottomSheet()
         setupListeners()
     }
 
@@ -27,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.buttonShowDialogFragment.setOnClickListener {
             showDialogFragment()
+        }
+        binding.buttonShowBottomSheet.setOnClickListener {
+            showBottomSheet()
         }
     }
 
@@ -53,5 +66,32 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(dialog, "TAG")
             .commitAllowingStateLoss()
+    }
+
+    private fun setupBottomSheet() {
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        bottomSheetBehavior.addBottomSheetCallback(object :
+            BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                var text = "Bottom sheet state - "
+                when (newState) {
+                    BottomSheetBehavior.STATE_HIDDEN -> text += "HIDDEN"
+                    BottomSheetBehavior.STATE_COLLAPSED -> text += "COLLAPSED"
+                    BottomSheetBehavior.STATE_DRAGGING -> text += "DRAGGING"
+                    BottomSheetBehavior.STATE_EXPANDED -> text += "EXPANDED"
+                    BottomSheetBehavior.STATE_SETTLING -> text += "SETTLING"
+                }
+                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                Log.d("LOG_TAG", "BottomSheet onSlide: $slideOffset")
+            }
+
+        })
+    }
+
+    private fun showBottomSheet() {
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 }
