@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         binding.buttonShowAlertDialog.setOnClickListener {
             showAlertDialog()
         }
+        binding.buttonShowDialogFragment.setOnClickListener {
+            showDialogFragment()
+        }
     }
 
     private fun showAlertDialog() {
@@ -41,5 +44,14 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, text, Toast.LENGTH_LONG).show()
             }
             .show()
+    }
+
+    private fun showDialogFragment() {
+        val dialog = DialogFragmentExample.newInstance { text ->
+            Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+        }
+        supportFragmentManager.beginTransaction()
+            .add(dialog, "TAG")
+            .commitAllowingStateLoss()
     }
 }

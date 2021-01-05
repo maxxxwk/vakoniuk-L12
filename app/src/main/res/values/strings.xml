@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">dialogs</string>
+    <string name="alert_dialog_show_button_text">Show Alert Dialog</string>
     <string name="alert_dialog_title">Alert Dialog</string>
     <string name="alert_dialog_message">Message text</string>
     <string name="alert_dialog_positive_button_text">Yes</string>
     <string name="alert_dialog_negative_button_text">No</string>
-    <string name="alert_dialog_show_button_text">Show Alert Dialog</string>
+    <string name="show_dialog_fragment_button_text">Show Dialog Fragment</string>
+    <string name="dialog_fragment_title">Dialog Fragment Title</string>
+    <string name="dialog_fragment_message">Dialog Fragment Message</string>
+    <string name="dialog_fragment_button_text">Ok</string>
+    <string name="dialog_fragment_text_edit_hint">Some text</string>
 </resources>
