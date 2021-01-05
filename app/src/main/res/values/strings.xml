@@ -11,4 +11,6 @@
     <string name="dialog_fragment_button_text">Ok</string>
     <string name="dialog_fragment_text_edit_hint">Some text</string>
     <string name="show_bottom_sheet_button_text">Show bottom sheet</string>
+    <string name="bottom_sheet_fragment_text">Bottom sheet fragment</string>
+    <string name="show_bottom_sheet_fragment_button_text">Show bottom sheet fragment</string>
 </resources>

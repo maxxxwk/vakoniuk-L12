@@ -41,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         binding.buttonShowBottomSheet.setOnClickListener {
             showBottomSheet()
         }
+        binding.buttonShowBottomSheetFragment.setOnClickListener {
+            showBottomSheetFragment()
+        }
     }
 
     private fun showAlertDialog() {
@@ -93,5 +96,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun showBottomSheet() {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    private fun showBottomSheetFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(BottomSheetFragment.newInstance(), "TAG")
+            .commitAllowingStateLoss()
     }
 }
